@@ -202,7 +202,7 @@ function DisplayDevices() {
         snapshot.forEach((childSnapshot) => {
           const devicesArray = childSnapshot.val().devices || [];
           devicesArray.forEach((device, i) => {
-            let buttonStyle = device.status === "1" ? "btn-danger" : "btn-primary";
+            let buttonStyle = device.status === "1" ? "btn-success" : "btn-danger";
             let buttonText = device.status === "1" ? "OFF" : "ON";
 
             let card = `<div class="card border-0 p-2">
