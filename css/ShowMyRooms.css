@@ -1,0 +1,263 @@
+body {
+  background-color: #f2f2f2;
+  height: 100vh;
+
+  animation: circle 3s linear infinite alternate;
+  background-image: url("../images/stars1.png");
+  background-size: 90%;
+  background-color: #0c030e;
+  color: #fff;
+}
+
+@keyframes circle {
+  from {
+    background-size: 90%;
+  }
+
+  to {
+    background-size: 100%;
+  }
+}
+
+h1 {
+  text-align: center;
+  border-bottom: 4px dotted #fff;
+  color: #fff;
+  text-shadow: 0 0 10px #fff;
+  box-shadow: 0 0 15px #fff;
+  font-size: 50px;
+}
+
+.contentCurrentRoom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  height: 400px;
+  margin: 5px auto;
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px #fff;
+  background-size: cover;
+}
+
+.lotifile .lotee {
+  width: 80%;
+  transform: translateY(-10px);
+  margin: 0 auto;
+}
+.addDevice {
+  position: absolute;
+  left: 92%;
+  bottom: -3% !important;
+}
+
+
+.devices .card {
+  width: 15%;
+
+}
+
+.devices .card p{
+margin-top: 5px;
+  font-size: 18px !important;
+}
+.card {
+  width: 55%;
+  height: 9em;
+  text-align: center;
+  margin: 5px;
+  border: 1px solid #fff;
+  box-shadow: 0 0 5px #fff;
+  background-color: #fff;
+
+}
+
+
+.nameOfDevice{
+  font-size: 22px;
+  font-weight: 600;
+}
+  label {
+    font-size: 20px;
+  }
+.form-check-input[type="checkbox"] {
+  position: relative;
+  top: -5px !important;
+  font-size: 25px;
+}
+.toggle{
+  padding: 8px;
+  width: 40%;
+  margin: 0 auto !important;
+  display: block !important;
+  border: none;
+  font-weight: 600;
+  transition: .5s;
+  scale: .9;
+}
+
+.push:focus,.push:active{
+scale:.8
+}
+
+
+.btn-on:active,.btn-on:focus{
+  cursor: not-allowed;
+  box-shadow: 0 0 10px green;
+  scale: 1.06;
+
+}
+
+.btn-off:active,.btn-off:focus{
+  cursor: not-allowed;
+  box-shadow: 0 0 10px red;
+  scale: 1.06;
+  
+}
+.currentState{
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 15px;
+  color: rgb(0, 55, 110);  
+  text-shadow: 0 0 3px rgb(149, 58, 253);
+}
+.contentDevices {
+  position: fixed;
+  left: 11%;
+  top: 15%;
+  width: 75%;
+  background-color: #fff;
+  z-index: 99999999;
+  transition: 0.7s;
+  transform: scale(0);
+  border-radius: 10px;
+}
+
+.closecontentdevices {
+  position: absolute;
+  top: 3%;
+  right: 15px;
+}
+
+label {
+  margin-left: 20px;
+  color: #fff;
+  font-weight: 700;
+}
+input[type="text"] {
+  display: block;
+  width: 80%;
+  padding: 8px;
+  margin-left: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: 0;
+}
+@media (max-width: 992px) {
+  h1 {
+    font-size: 20px;
+  }
+  .contentCurrentRoom {
+    flex-direction: column;
+  }
+  .description {
+    width: 100% !important;
+  }
+  .lotifile .lotee {
+    display: none;
+  }
+
+  .addDevice {
+    position: fixed;
+    left: 85% !important;
+    bottom: 20px !important;
+    z-index: 1000000;
+    transition: .5s;
+  
+  }
+  .addDevice:hover{
+    scale:.9;
+    box-shadow: 0 0 8px #123;
+  }
+  .devices .card {
+    width: 46%;
+  }
+  .devices .card p{
+    font-size: 16px !important;
+  }
+  .card {
+    width: 46%;
+    overflow: hidden;
+  }
+
+  .contentDevices {
+    position: fixed;
+    left: 5%;
+    top: 5%;
+    width: 95%;
+  }
+
+  lottie-player {
+    display: none;
+  }
+
+  label {
+    font-size: 16px;
+  }
+  .form-check-input[type="checkbox"] {
+  
+    top: -5px !important;
+    left: -10px !important;
+  
+}
+}
+
+.fa-trash-can {
+transition: .7s;
+}
+.fa-trash-can:hover ,.model-btn-delete:hover{
+  scale: 0.9;
+
+}
+
+
+.modal{
+  color: #123 !important;
+  transition: .7s;
+}
+.model{
+  color: #123 !important;
+  transition: .7s;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 6px;
+  width: 300px;
+position: fixed;
+top: 15%;
+left: 15%;
+width: 450px;
+/* scale: 0; */
+}
+.fa-trash-can{
+  border: none;
+  background: #fff;
+  color: #123;
+  border: none;
+  position: absolute;
+  padding: 4px 8px;
+  font-size: 18px;
+  border-radius: 5px;
+  box-shadow: 0 0 1px #123;
+  cursor: pointer;
+  left: 7px;
+  transition: 0.7s;
+  color: red;
+}
+
