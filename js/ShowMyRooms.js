@@ -32,6 +32,7 @@ if (urlParams.has("nameRoom") && urlParams.has("nameImage")) {
 }
 
 let devices = document.querySelector(".devices");
+let devicesPush = document.querySelector(".devicesPush");
 let containPushButtons = document.getElementById("containPushButtons");
 let NameOfDevice = document.querySelector(".NameOfDevice");
 let contentDevices = document.querySelector(".contentDevices");
@@ -200,6 +201,8 @@ function DisplayDevices() {
       (snapshot) => {
         devices.innerHTML = "";
         snapshot.forEach((childSnapshot) => {
+        devices.innerHTML = "";
+
           const devicesArray = childSnapshot.val().devices || [];
           devicesArray.forEach((device, i) => {
             let buttonStyle = device.status === "1" ? "btn-success" : "btn-danger";
@@ -208,7 +211,7 @@ function DisplayDevices() {
             let card = `<div class="card border-0 p-2">
             <span style="opacity:0">${i}</span>
             <p class="nameOfDevice">${device.Name}</p>
-            <i class="fa-solid fa-trash-can deletbtnDevice"></i>
+<i class="fa-solid fa-trash-can deletbtnDevice"></i>
             <div class="container">
               <button class="toggle btn ${buttonStyle}" data-room-key="${childSnapshot.key}" data-device-index="${i}">${buttonText}</button>
               <span style="opacity:0">${device.Name}</span>
@@ -221,7 +224,7 @@ function DisplayDevices() {
         });
 
         // Attach click event listeners to the toggle buttons
-        const toggleButtons = devices.querySelectorAll(".toggle");
+        let toggleButtons = devices.querySelectorAll(".toggle");
         toggleButtons.forEach((button) => {
           button.addEventListener("click", () => {
             const roomKey = button.dataset.roomKey;
@@ -250,6 +253,89 @@ function DisplayDevices() {
     );
 }
 
+
+function DisplayPushDevices() {
+  const roomsRef = firebase.database().ref("Rooms");
+  roomsRef
+    .orderByChild("Name")
+    .equalTo(currentName)
+    .on(
+      "value",
+      (snapshot) => {
+        devicesPush.innerHTML=""
+        snapshot.forEach((childSnapshot) => {
+          devicesPush.innerHTML=""
+          const devicesArray = childSnapshot.val().devicesPush || [];
+          devicesArray.forEach((device, i) => {
+            
+            let buttonStylePush = device.status === "1" ? "btn-success" : "btn-danger";
+    
+            let card = `<div class="card border-0 p-2">
+            <span style="opacity:0">${i}</span>
+            <p class="nameOfDevice">${device.Name}</p>
+<i class="fa-solid fa-trash-can deletbtnDevice pushbtn"></i>
+            <div class="container">
+              <button class="push btn ${buttonStylePush}" data-room-key="${childSnapshot.key}" data-device-index="${i}">Push</button>
+            </div>
+
+            <span style="opacity:0">${childSnapshot.key}</span>
+          </div>`;
+          devicesPush.innerHTML += card;
+          });
+        });
+
+        // Attach click event listeners to the toggle buttons
+        let PushButtons = devicesPush.querySelectorAll(".push");
+        PushButtons.forEach((button) => {
+          button.addEventListener("mousedown", () => {
+            const roomKey = button.dataset.roomKey;
+            const deviceIndex = button.dataset.deviceIndex;
+          
+            // Get the devices array for the current room
+            const devicesArray = snapshot.child(roomKey).val().devicesPush || [];
+
+            // Check if the deviceIndex is within the valid range
+            if (deviceIndex >= 0 && deviceIndex < devicesArray.length) {
+              // Get the name of the device
+              const deviceName = devicesArray[deviceIndex].Name;
+
+              const newName = deviceName; // اضف هنا اسمًا جديدًا إذا كنت ترغب في تغيير اسم الجهاز
+              const nameOfArray = "devicesPush"; // اضف هنا اسم الصفيف الذي يحتوي على الأجهزة في قاعدة البيانات
+
+              updateStateDevice(roomKey, deviceIndex, "1", newName, nameOfArray, deviceName);
+            }
+          });
+        });
+
+        PushButtons.forEach((button) => {
+          button.addEventListener("mouseup", () => {
+            const roomKey = button.dataset.roomKey;
+            const deviceIndex = button.dataset.deviceIndex;
+        
+            // Get the devices array for the current room
+            const devicesArray = snapshot.child(roomKey).val().devicesPush || [];
+
+            // Check if the deviceIndex is within the valid range
+            if (deviceIndex >= 0 && deviceIndex < devicesArray.length) {
+              // Get the name of the device
+              const deviceName = devicesArray[deviceIndex].Name;
+
+              const newName = deviceName; // اضف هنا اسمًا جديدًا إذا كنت ترغب في تغيير اسم الجهاز
+              const nameOfArray = "devicesPush"; // اضف هنا اسم الصفيف الذي يحتوي على الأجهزة في قاعدة البيانات
+
+              updateStateDevice(roomKey, deviceIndex, "0", newName, nameOfArray, deviceName);
+            }
+          });
+        });
+      },
+      (error) => {
+        console.error("حدث خطأ أثناء قراءة الأجهزة:", error);
+      }
+    );
+}
+
+
+
 function updateStateDevice(uid, index, currentStatus, NewName, NameOfArray) {
   var data = {
     status: currentStatus,
@@ -272,37 +358,6 @@ function updateStateDevice(uid, index, currentStatus, NewName, NameOfArray) {
     },
   });
 }
-// View stored data from realtime Database (  devices  bushing )
-function DisplayPushDevices() {
-  const roomsRef = firebase.database().ref("Rooms");
-  roomsRef
-    .orderByChild("Name")
-    .equalTo(currentName)
-    .on(
-      "value",
-      (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          const devicesArray = childSnapshot.val().devicesPush || [];
-          devicesArray.forEach((device, i) => {
-            let card = `<div class="card border-0 p-2">
-            <span style="opacity:0">${i}</span>
-            <p class="nameOfDevice">${device.Name}</p>
-            <i class="fa-solid fa-trash-can deletbtnDevice pushbtn"></i>
-            <div class="container">
-              <button class="push btn btn-primary">Push</button>
-            </div>
-      
-            <span style="opacity:0">${childSnapshot.key}</span>
-          </div>`;
-            devices.innerHTML += card;
-          });
-        });
-      },
-      (error) => {
-        console.error("حدث خطأ أثناء قراءة الأجهزة:", error);
-      }
-    );
-}
 // caling two functions during load Page
 window.onload = () => {
   DisplayDevices();
@@ -317,23 +372,7 @@ let newNameOfDevice;
 devices.addEventListener("click", (e) => {
   // index and uid :==> (id) and name of current Device to use later during updating
   let uid = e.target.parentElement.parentElement.lastElementChild.innerHTML;
-  index = e.target.parentElement.parentElement.firstElementChild.innerHTML;
 
-  // the Element that contains classes : ( chekinput ) and checked will be updated
-  if (e.target.classList == "on btn btn-primary") {
-    newNameOfDevice =
-      e.target.parentElement.parentElement.firstElementChild.nextElementSibling
-        .innerHTML;
-    updateStateDevice(uid, index, "1", newNameOfDevice, "devices");
-
-  }
-  if (e.target.classList == "off btn btn-danger") {
-    newNameOfDevice =
-      e.target.parentElement.parentElement.firstElementChild.nextElementSibling
-        .innerHTML;
-    updateStateDevice(uid, index, "0", newNameOfDevice, "devices");
-  
-  }
   // uid and index for this current element
   uid = e.target.parentElement.lastElementChild.innerHTML;
   index = e.target.parentElement.firstElementChild.innerHTML;
@@ -374,33 +413,6 @@ function deleteDevice(uid, index, NameOfArray) {
   });
 }
 
-devices.addEventListener("mousedown", (e) => {
-  let uid = e.target.parentElement.parentElement.lastElementChild.innerHTML;
-  index = e.target.parentElement.parentElement.firstElementChild.innerHTML;
-
-  // the Element that contains classes : ( chekinput ) and checked will be updated
-  if (e.target.classList == "push btn btn-primary") {
-    newNameOfDevice =
-      e.target.parentElement.parentElement.firstElementChild.nextElementSibling
-        .innerHTML;
-    updateStateDevice(uid, index, "1", newNameOfDevice, "devicesPush");
-
-  }
-});
-
-devices.addEventListener("mouseup", (e) => {
-  let uid = e.target.parentElement.parentElement.lastElementChild.innerHTML;
-  index = e.target.parentElement.parentElement.firstElementChild.innerHTML;
-
-  if (e.target.classList == "push btn btn-primary") {
-    newNameOfDevice =
-      e.target.parentElement.parentElement.firstElementChild.nextElementSibling
-        .innerHTML;
-    updateStateDevice(uid, index, "0", newNameOfDevice, "devicesPush");
-
-
-  }
-});
 
 
 
