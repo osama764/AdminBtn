@@ -398,6 +398,35 @@ devices.addEventListener("click", (e) => {
 });
 
 
+devicesPush.addEventListener("click", (e) => {
+  // index and uid :==> (id) and name of current Device to use later during updating
+  let uid = e.target.parentElement.parentElement.lastElementChild.innerHTML;
+
+  // uid and index for this current element
+  uid = e.target.parentElement.lastElementChild.innerHTML;
+  index = e.target.parentElement.firstElementChild.innerHTML;
+  // the Element that contains classes : ( fa-solid fa-xmark deletbtnDevice notPushDevice ) will be deleted
+  if (e.target.classList == "fa-solid fa-trash-can deletbtnDevice") {
+
+    if(confirm("Confirm Delete"))
+    {
+      deleteDevice(uid, index, "devices");
+    }else{
+      alert("Delete Cancel")
+    }
+  }
+  if (e.target.classList == "fa-solid fa-trash-can deletbtnDevice pushbtn") {
+    if(confirm("Confirm Delete"))
+    {
+      deleteDevice(uid, index, "devicesPush");
+    }else{
+      alert("Delete Cancel")
+    }
+      
+  }
+});
+
+
 // <i class="fa-solid fa-trash-can"></i>
 // function delete device using index and uid
 function deleteDevice(uid, index, NameOfArray) {
