@@ -57,12 +57,12 @@ h1 {
 }
 
 
-.devices .card {
+.devices .card ,.devicesPush .card{
   width: 15%;
 
 }
 
-.devices .card p{
+.devices .card p ,.devicesPush .card p{
 margin-top: 5px;
   font-size: 18px !important;
 }
@@ -76,7 +76,16 @@ margin-top: 5px;
   background-color: #fff;
 
 }
+.title-devices{
 
+  border-bottom: 4px solid #fff;
+  border-left: 4px solid #fff;
+box-shadow: 0 0 12px 1px #fff;
+border-radius: 5px;
+  width: fit-content;
+  padding: 15px;
+  margin: 15px auto;
+}
 
 .nameOfDevice{
   font-size: 22px;
@@ -92,7 +101,7 @@ margin-top: 5px;
 }
 .toggle{
   padding: 8px;
-  width: 45%;
+  width: 50%;
   margin: 0 auto !important;
   display: block !important;
   border: none;
@@ -100,6 +109,7 @@ margin-top: 5px;
   transition: .5s;
   scale: .9;
 }
+
 
 .push:focus,.push:active{
 scale:.8
@@ -186,10 +196,10 @@ input[type="text"] {
     scale:.9;
     box-shadow: 0 0 8px #123;
   }
-  .devices .card {
+  .devices .card ,.devicesPush .card{
     width: 46%;
   }
-  .devices .card p{
+  .devices .card p,.devicesPush .card p{
     font-size: 16px !important;
   }
   .card {
@@ -260,4 +270,3 @@ width: 450px;
   transition: 0.7s;
   color: red;
 }
-
