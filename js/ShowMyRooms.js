@@ -211,7 +211,7 @@ function DisplayDevices() {
             let card = `<div class="card border-0 p-2">
             <span style="opacity:0">${i}</span>
             <p class="nameOfDevice">${device.Name}</p>
-<i class="fa-solid fa-trash-can deletbtnDevice"></i>
+            <i class="fa-solid fa-trash-can deletbtnDevice"></i>
             <div class="container">
               <button class="toggle btn ${buttonStyle}" data-room-key="${childSnapshot.key}" data-device-index="${i}">${buttonText}</button>
               <span style="opacity:0">${device.Name}</span>
@@ -253,7 +253,6 @@ function DisplayDevices() {
     );
 }
 
-
 function DisplayPushDevices() {
   const roomsRef = firebase.database().ref("Rooms");
   roomsRef
@@ -273,7 +272,7 @@ function DisplayPushDevices() {
             let card = `<div class="card border-0 p-2">
             <span style="opacity:0">${i}</span>
             <p class="nameOfDevice">${device.Name}</p>
-<i class="fa-solid fa-trash-can deletbtnDevice pushbtn"></i>
+            <i class="fa-solid fa-trash-can deletbtnDevice pushbtn"></i>
             <div class="container">
               <button class="push btn ${buttonStylePush}" data-room-key="${childSnapshot.key}" data-device-index="${i}">Push</button>
             </div>
@@ -288,6 +287,25 @@ function DisplayPushDevices() {
         let PushButtons = devicesPush.querySelectorAll(".push");
         PushButtons.forEach((button) => {
           button.addEventListener("mousedown", () => {
+            const roomKey = button.dataset.roomKey;
+            const deviceIndex = button.dataset.deviceIndex;
+          
+            // Get the devices array for the current room
+            const devicesArray = snapshot.child(roomKey).val().devicesPush || [];
+
+            // Check if the deviceIndex is within the valid range
+            if (deviceIndex >= 0 && deviceIndex < devicesArray.length) {
+              // Get the name of the device
+              const deviceName = devicesArray[deviceIndex].Name;
+
+              const newName = deviceName; // اضف هنا اسمًا جديدًا إذا كنت ترغب في تغيير اسم الجهاز
+              const nameOfArray = "devicesPush"; // اضف هنا اسم الصفيف الذي يحتوي على الأجهزة في قاعدة البيانات
+
+              updateStateDevice(roomKey, deviceIndex, "1", newName, nameOfArray, deviceName);
+            }
+          });
+
+          button.addEventListener("touchstart", () => {
             const roomKey = button.dataset.roomKey;
             const deviceIndex = button.dataset.deviceIndex;
           
@@ -326,7 +344,34 @@ function DisplayPushDevices() {
               updateStateDevice(roomKey, deviceIndex, "0", newName, nameOfArray, deviceName);
             }
           });
+
+          button.addEventListener("touchend", () => {
+            const roomKey = button.dataset.roomKey;
+            const deviceIndex = button.dataset.deviceIndex;
+        
+            // Get the devices array for the current room
+            const devicesArray = snapshot.child(roomKey).val().devicesPush || [];
+
+            // Check if the deviceIndex is within the valid range
+            if (deviceIndex >= 0 && deviceIndex < devicesArray.length) {
+              // Get the name of the device
+              const deviceName = devicesArray[deviceIndex].Name;
+
+              const newName = deviceName; // اضف هنا اسمًا جديدًا إذا كنت ترغب في تغيير اسم الجهاز
+              const nameOfArray = "devicesPush"; // اضف هنا اسم الصفيف الذي يحتوي على الأجهزة في قاعدة البيانات
+
+              updateStateDevice(roomKey, deviceIndex, "0", newName, nameOfArray, deviceName);
+            }
+          });
+        
         });
+
+
+
+    
+        
+        // استبدل حدث mouseup بـ touchend
+      
       },
       (error) => {
         console.error("حدث خطأ أثناء قراءة الأجهزة:", error);
@@ -362,7 +407,7 @@ function updateStateDevice(uid, index, currentStatus, NewName, NameOfArray) {
 window.onload = () => {
   DisplayDevices();
   DisplayPushDevices();
-};
+}
 
 // initialization of two variables to store index and name of device
 let index;
@@ -427,7 +472,7 @@ devicesPush.addEventListener("click", (e) => {
 });
 
 
-// <i class="fa-solid fa-trash-can"></i>
+
 // function delete device using index and uid
 function deleteDevice(uid, index, NameOfArray) {
   $.ajax({
@@ -444,6 +489,3 @@ function deleteDevice(uid, index, NameOfArray) {
 
 
 
-
-// 
-// <i class="fa-solid fa-trash-can deletbtnDevice pushbtn"></i>
