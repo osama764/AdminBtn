@@ -54,6 +54,7 @@ h1 {
   position: absolute;
   left: 92%;
   bottom: -3% !important;
+  z-index: 666666666;
 }
 
 
@@ -62,19 +63,57 @@ h1 {
 
 }
 
+.devices .card ,.devicesPush .card{
+  width: 15%;
+  position: relative;
+
+}
+
 .devices .card p ,.devicesPush .card p{
-margin-top: 5px;
-  font-size: 18px !important;
+position: absolute;
+top: 5px;
+right:  15px;
+  font-size: 14px !important;
 }
 .card {
   width: 55%;
-  height: 9em;
+  height: 9.5em;
   text-align: center;
   margin: 5px;
   border: 1px solid #fff;
   box-shadow: 0 0 5px #fff;
   background-color: #fff;
 
+}
+.card img{
+  width: 70%;
+  height: 50%;
+  display: block;
+margin: 8px auto;
+border-radius: 3px;
+
+}
+
+.card .btn-success{
+  padding: 4px;
+  margin: 0;
+  background-color: #00c64f;
+  box-shadow: 0 0 3px 2px #00c64f;
+
+}
+
+.card .btn-danger{
+  padding: 4px;
+  margin: 0;
+  background-color: #ff0026;
+  box-shadow: 0 0 3px 2px #ff0026;
+
+}
+.card .push{
+  padding: 3px;
+  margin: 0;
+width: 45%;
+border: none;
 }
 .title-devices{
 
@@ -86,7 +125,11 @@ border-radius: 5px;
   padding: 15px;
   margin: 15px auto;
 }
+.card .btn{
+  padding: 4px;
+  margin: 0;
 
+}
 .nameOfDevice{
   font-size: 22px;
   font-weight: 600;
@@ -116,19 +159,9 @@ scale:.8
 }
 
 
-.btn-on:active,.btn-on:focus{
-  cursor: not-allowed;
-  box-shadow: 0 0 10px green;
-  scale: 1.06;
 
-}
 
-.btn-off:active,.btn-off:focus{
-  cursor: not-allowed;
-  box-shadow: 0 0 10px red;
-  scale: 1.06;
-  
-}
+
 .currentState{
   font-size: 22px;
   font-weight: 600;
@@ -139,9 +172,9 @@ scale:.8
 .contentDevices {
   position: fixed;
   left: 11%;
-  top: 15%;
+  top: 2%;
   width: 75%;
-  background-color: #fff;
+  background-color: #ffffff;
   z-index: 99999999;
   transition: 0.7s;
   transform: scale(0);
@@ -171,6 +204,16 @@ input[type="text"] {
   outline: 0;
 }
 
+.addDefferentDevice{
+  position: relative;
+  top: 15px;
+  left: -40px;
+}
+.selectImage{
+  position: relative;
+  top: 15px;
+}
+
 .typesAllDevices {
 flex-wrap: wrap;
 }
@@ -186,83 +229,7 @@ flex-wrap: wrap;
 
   font-size: 15px;
 }
-@media (max-width: 992px) {
-.typesAllDevices .form-check{
-  width: 50%;
-}
-  
-  h1 {
-    font-size: 20px;
-  }
-  .contentCurrentRoom {
-    flex-direction: column;
-  }
-  .description {
-    width: 100% !important;
-  }
-  .lotifile .lotee {
-    display: none;
-  }
 
-  .addDevice {
-    position: fixed;
-    left: 85% !important;
-    bottom: 20px !important;
-    z-index: 1000000;
-    transition: .5s;
-  
-  }
-  .addDevice:hover{
-    scale:.9;
-    box-shadow: 0 0 8px #123;
-  }
-  .devices .card ,.devicesPush .card{
-    width: 30%;
-  }
-  .devices .card p,.devicesPush .card p{
-    font-size: 10px !important;
-
-  }
-  .card {
-    width: 30%;
-    height: 7em;
-    overflow: hidden;
-  }
-
-
-  .contentDevices {
-    position: fixed;
-    left: 5%;
-    top: 5%;
-    width: 95%;
-  }
-
-  lottie-player {
-    display: none;
-  }
-
-  label {
-    font-size: 16px;
-  }
-  .form-check-input[type="checkbox"] {
-  
-    top: -5px !important;
-    left: -10px !important;
-  
-}
-
-.fa-trash-can {
-  transition: .7s;
-  font-size: 15px !important;
-  padding: 3px !important;
-  border-radius: 1px !important;
-  }
-  .btn{
-    width: 100% !important;
-    font-size: 12px !important;
-    padding: 5px !important;
-  }
-}
 
 .fa-trash-can {
 transition: .7s;
@@ -297,12 +264,504 @@ width: 450px;
   color: #123;
   border: none;
   position: absolute;
-  padding: 4px 8px;
+  /* padding: 4px 8px; */
   font-size: 18px;
-  border-radius: 5px;
-  box-shadow: 0 0 1px #123;
+
   cursor: pointer;
   left: 7px;
   transition: 0.7s;
   color: red;
 }
+
+
+
+
+
+
+#containerImage{
+
+  transform: scale(0);
+  background-color: #fff;
+
+transition: .7s;
+  border-radius: 10px;
+  position: fixed;
+  top: 0%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100000000 !important;
+  overflow-y: auto;
+}
+#closeImages{
+  background-color: #000;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  padding: 10px;
+  display: block;
+  margin-top: 15px;
+  margin-left: 96%;
+  width: 38px;
+  height: 38px;
+  line-height: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+#containerImage h2{
+  color: #123;
+  text-align: center;
+  margin: 25px 0;
+  font-size: 35px;
+  font-weight: 700;
+}
+.containerSelectionImages{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cardImage{
+  width: 15%;
+
+  cursor: pointer;
+  margin: 10px;
+
+}
+.cardImage img{
+  width: 100%;
+  border-radius: 5px;
+  height: 150px;
+}
+.cardImage span{
+  display: block;
+  margin: 10px auto;
+  font-size: 1px;
+  font-weight: 700;
+  color: #fff;
+}
+
+
+
+/* media */
+
+
+
+@media (min-width: 501px) and (max-width: 1000px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  .description {
+display: none;
+  }
+  
+  .lotifile .lotee {
+    width: 150%;
+    transform: translateY(3px);
+    transform: translateX(50px);
+    
+  }
+
+  .addDevice {
+    position: fixed;
+    left: 85%;
+    bottom: 15% !important;
+    z-index: 999999;
+  width: 40px;
+  }
+
+  .title-devices{
+font-size: 22px;
+    padding: 12px;
+    margin: 10px auto;
+  }
+
+  .devices .card ,.devicesPush .card{
+    width: 22%;
+    position: relative;
+
+    height: 9em;
+    overflow: hidden;
+  }
+  .devices .card p,.devicesPush .card p{
+    font-size: 11px !important;
+    position: absolute;
+top: 8px;
+right: 3px;
+  }
+  .card img{
+    width: 90px;
+    height: 100px !important;
+  }
+
+
+
+  .contentDevices {
+    position: fixed;
+    left: 5%;
+    top: 5%;
+    width: 95%;
+  }
+
+
+  label {
+    font-size: 16px;
+  }
+  .form-check-input[type="checkbox"] {
+  
+    top: -5px !important;
+    left: -10px !important;
+  
+}
+
+.fa-trash-can {
+  transition: .7s;
+  font-size: 15px !important;
+  padding: 3px !important;
+  border-radius: 1px !important;
+  }
+  .btn{
+
+    font-size: 12px !important;
+    padding: 5px !important;
+  }
+
+
+
+
+  .form-select{
+    font-size: 10px;
+  }
+  .addNewDevice{
+    font-size: 12px;
+  }
+    .contentDevices {
+      position: fixed;
+    
+      top: -1%;
+      width: 95%;
+      flex-direction: column;
+    }
+  
+  
+    label {
+      font-size: 15px;
+    }
+    .form-check-input[type="checkbox"] {
+    
+      top: -5px !important;
+      left: -10px !important;
+    
+  }
+  
+  .seimg{
+  
+    display: none;
+  }
+  
+  .selectImage{
+    position: relative;
+  top: 1px !important;
+    font-size: 12px;
+    left: -300px;
+    width: 200px;
+  }
+  .typeText{
+    font-size: 12px !important;
+  
+  }
+  .fa-trash-can {
+    transition: .7s;
+    font-size: 15px !important;
+    padding: 3px !important;
+    border-radius: 1px !important;
+    }
+    .card .btn{
+  width: 50% !important;
+      font-size: 12px !important;
+      padding: 5px !important;
+    }
+  
+  
+  
+    /* ******************* */
+  
+    
+  .contentDevices {
+  
+    width: 85%;
+  
+  }
+  
+  
+  
+  label {
+    margin-left: 20px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    width: 100%;
+  }
+  input[type="text"] {
+  
+    font-size: 15px;
+  
+  }
+  
+  .loteemobile{
+    display: none !important;
+  }
+  
+  
+  .typesAllDevices {
+  flex-wrap: wrap;
+  display: flex;
+  }
+  
+  .textLable .form-label{
+    font-size: 10px;
+  }
+  .addDefferentDevice{
+    position: relative;
+    top: 25px;
+    left: 10px;
+  font-size: 12px;
+  width: 150px;
+  }
+  
+  
+  
+  .typesAllDevices .form-check{
+    width: 25%;
+  }
+  .typesAllDevices label{
+    font-size: 10px !important;
+  }
+  
+  .typesAllDevices .form-check-input[type="radio"] {
+    position: static;
+  
+    font-size: 15px;
+  }
+
+  #closeImages{
+
+    font-size: 18px;
+  
+    margin-left: 88%;
+  
+  }
+  #containerImage h2{
+  
+    font-size: 25px;
+  
+  }
+  
+  
+  .cardImage{
+    width: 21%;
+  
+  
+  }
+  .cardImage img{
+  
+    height: 150px;
+  }
+}
+
+@media  (max-width: 500px) {
+
+
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .description {
+display: none;
+  }
+  .lotifile .lotee {
+    width: 150%;
+    transform: translateY(3px);
+    transform: translateX(50px);
+    
+  }
+
+  .addDevice {
+    position: fixed;
+    left: 85%;
+    bottom: 25% !important;
+    z-index: 999999;
+  
+  }
+  .title-devices{
+font-size: 22px;
+    padding: 12px;
+    margin: 10px auto;
+  }
+
+  .devices .card ,.devicesPush .card{
+    width: 28%;
+    position: relative;
+
+    height: 9em;
+    overflow: hidden;
+  }
+  .devices .card p,.devicesPush .card p{
+    font-size: 11px !important;
+    position: absolute;
+top: 8px;
+right: 3px;
+  }
+  .card img{
+    width: 90px;
+    height: 100px !important;
+  }
+
+
+.form-select{
+  font-size: 10px;
+}
+.addNewDevice{
+  font-size: 12px;
+}
+  .contentDevices {
+    position: fixed;
+  
+    top: -1%;
+    width: 95%;
+    flex-direction: column;
+  }
+
+
+  label {
+    font-size: 15px;
+  }
+  .form-check-input[type="checkbox"] {
+  
+    top: -5px !important;
+    left: -10px !important;
+  
+}
+
+.seimg{
+
+  display: none;
+}
+
+.selectImage{
+  position: relative;
+top: 5px !important;
+  font-size: 12px;
+  left: -150px;
+  width: 350px !important;
+}
+.typeText{
+  font-size: 12px !important;
+
+}
+.fa-trash-can {
+  transition: .7s;
+  font-size: 15px !important;
+  padding: 3px !important;
+  border-radius: 1px !important;
+  }
+  .card .btn{
+width: 50% !important;
+    font-size: 12px !important;
+    padding: 5px !important;
+  }
+
+
+
+  /* ******************* */
+
+  
+.contentDevices {
+
+  width: 85%;
+
+}
+
+
+
+label {
+  margin-left: 20px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  width: 100%;
+}
+input[type="text"] {
+
+  font-size: 15px;
+
+}
+
+.loteemobile{
+  display: none !important;
+}
+
+
+.typesAllDevices {
+flex-wrap: wrap;
+display: flex;
+}
+
+.textLable .form-label{
+  font-size: 10px;
+}
+.addDefferentDevice{
+  position: relative;
+  top: 25px;
+  left: 10px;
+font-size: 12px;
+width: 150px;
+}
+
+
+
+.typesAllDevices .form-check{
+  width: 25%;
+}
+.typesAllDevices label{
+  font-size: 10px !important;
+}
+
+.typesAllDevices .form-check-input[type="radio"] {
+  position: static;
+
+  font-size: 15px;
+}
+
+
+#closeImages{
+
+  font-size: 18px;
+
+  margin-left: 88%;
+
+}
+#containerImage h2{
+
+  font-size: 25px;
+
+}
+
+
+.cardImage{
+  width: 20%;
+
+
+}
+.cardImage img{
+
+  height: 100px;
+}
+
+}
+
+
+
+
