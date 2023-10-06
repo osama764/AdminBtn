@@ -14,10 +14,11 @@
     <div
       class="container contentCurrentRoom mt-3 p-3">
       <div class="description w-50 me-3">
-        <button class="btn btn-warning mt-3 addDevice"
+    
+      </div>
+          <button class="btn btn-warning addDevice"
           style="font-weight: 700; ">+</button>
 
-      </div>
       <div class="lotifile w-50">
         <lottie-player
           src="https://lottie.host/2355985d-e919-4d61-b453-9b1d2e57b8c7/b7nwKZUWjw.json"
@@ -49,72 +50,7 @@
           </label>
         </div>
 
-        <!-- <div class="typesAllDevices d-flex align-items-center justify-content-between">
-            <div class="form-check p-2 mb-3  d-flex align-items-center justify-content-between" >
-          <input class="form-check-input  ms-1" type="checkbox" value
-            id="magneticLight">
-          <label class="form-check-label" for="magneticLight"
-            style="color: #123;">
-            magnetic Light
-          </label>
-        </div>
-
-        <div class="form-check p-2 mb-3  d-flex align-items-center justify-content-between" >
-          <input class="form-check-input  ms-1" type="checkbox" value
-            id="spot">
-          <label class="form-check-label" for="spot"
-            style="color: #123;">
-            spot
-          </label>
-        </div>
-
-        <div class="form-check p-2 mb-3  d-flex align-items-center justify-content-between" >
-          <input class="form-check-input  ms-1" type="checkbox" value
-            id="profileLight">
-          <label class="form-check-label" for="profileLight"
-            style="color: #123;">
-            profile Light
-          </label>
-        </div>
-
-        <div class="form-check p-2 mb-3  d-flex align-items-center justify-content-between" >
-          <input class="form-check-input  ms-1" type="checkbox" value
-            id="Chandelier">
-          <label class="form-check-label" for="Chandelier"
-            style="color: #123;">
-            Chandelier
-          </label>
-        </div>
-
-        <div class="form-check p-2 mb-3  d-flex align-items-center justify-content-between" >
-          <input class="form-check-input  ms-1" type="checkbox" value
-            id="TV">
-          <label class="form-check-label" for="TV"
-            style="color: #123;">
-          TV
-          </label>
-        </div>
-
-        <div class="form-check p-2 mb-3  d-flex align-items-center justify-content-between" >
-          <input class="form-check-input  ms-1" type="checkbox" value
-            id="GasController">
-          <label class="form-check-label" for="GasController"
-            style="color: #123;">
-            GasController
-          </label>
-        </div>
-        <div class="form-check p-2 mb-3  d-flex align-items-center justify-content-between" >
-          <input class="form-check-input  ms-1" type="checkbox" value
-            id="condition">
-          <label class="form-check-label" for="condition"
-            style="color: #123;">
-            condition
-          </label>
-        </div>
-
-        </div> -->
-
-
+  
         <div class="addDeviceforRoom">
       
       
@@ -188,18 +124,44 @@
         <button class="btn btn-warning mb-2 addNewDevice"
           style="font-weight: 600;">Add Device</button>
 
+
+        <div class="d-flex align-items-center mt-3 textLable">
+            <div>
+              <label style="color: #213 !important;  " for="DifferentDevice" class="form-label">You can add a new device that is not in the list</label>
+              <input type="text" class="form-control " id="DifferentDevice">
+            </div>
+            <button class="btn btn-warning  addDefferentDevice"
+            style="font-weight: 600;">Add Device</button>
+        </div>
+
       </div>
 
-      <div>
+      <div class=" w-50">
 
         <lottie-player
           src="https://lottie.host/e104bd32-da8f-4554-9797-b75bc7ac664e/3iKZhohEd8.json"
           background="#FFFFFF" speed="1" style="width: 300px; height: 300px"
-          loop autoplay direction="1" mode=“normal”></lottie-player>
+          loop autoplay direction="1" mode=“normal” class="loteemobile"></lottie-player>
+          <div class="d-flex align-items-center mt-3 parentselectImage">
+          <div>
+            <label style="color: #213 !important;" for="selectImg" class="form-label seimg">Select Image</label>
+            <input type="text" class="form-control typeText" id="selectImg">
+          </div>
+          <button class="btn btn-warning  selectImage"
+          style="font-weight: 600;">Select Image</button>
+          </div>
       </div>
 
     </div>
 
+        <div id="containerImage">
+      <span id="closeImages">X</span>
+      <h2>Images the Devices</h2>
+      <div class="containerSelectionImages">
+
+      </div>
+
+    </div>
     <!-- Modal Box -->
     <!-- Button trigger modal -->
 
