@@ -144,7 +144,7 @@ border-radius: 5px;
 }
 .toggle{
   padding: 8px;
-  width: 50%;
+  width: 50% !important;
   margin: 0 auto !important;
   display: block !important;
   border: none;
@@ -602,7 +602,7 @@ font-size: 22px;
   }
 
   .devices .card ,.devicesPush .card{
-    width: 28%;
+    width: 46%;
     position: relative;
 
     height: 9em;
@@ -668,7 +668,7 @@ top: 5px !important;
   border-radius: 1px !important;
   }
   .card .btn{
-width: 50% !important;
+width: 100% !important;
     font-size: 12px !important;
     padding: 5px !important;
   }
